@@ -10,7 +10,7 @@
             type="text"
             placeholder="Например BTC"
             v-model="tickerInput"
-            @input="viewTooltip"
+            @input = "$event.target.composing = false"
             @keydown.enter="addTicker(tickerInput)"
           />
         </label>
@@ -110,13 +110,21 @@ export default {
 			}
 		},
     viewTooltip() {
-      const str = this.tickerInput.toLowerCase().trim();
-      if(+str === 0 && str !== '0') return
+      const str = this.tickerInput.toLowerCase();
+      if(+str === 0 && str !== '0') {
+        this.tooltips = []
+        return
+      }
       this.tooltips = this.tickersData
         .filter((el) => el.FullName.toLowerCase().includes(str))
         .slice(0, 4);
     },
   },
+	watch: {
+  	tickerInput(){
+  		this.viewTooltip()
+		}
+	},
   async mounted() {
     this.tickersData = await getTickerList();
 		this.getTickersFromLocalStorage()
