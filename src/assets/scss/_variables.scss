@@ -1,0 +1,83 @@
+$font-family: "Roboto", sans-serif;
+$minwidth: 320px;
+$black: #1c1c1c;
+
+@function vw($value, $base: 1920) {
+	@return $value / $base * 100vw;
+}
+
+@function rem($value, $base) {
+	@return $value / $base + rem;
+}
+
+@function lh($value, $base) {
+	@return $value / $base;
+}
+
+@mixin adaptiv($property, $startSize, $minSize, $max-width, $min-width) {
+	$addSize: $startSize - $minSize;
+	#{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - #{$min-width + px}) / (#{$max-width - #{$min-width}})));
+}
+
+@mixin mail {
+	a[href^="mailto:"] {
+		@content;
+	}
+}
+
+@mixin tel {
+	a[href^="tel:"] {
+		@content;
+	}
+}
+
+@mixin cross($width, $height) {
+	width: $width;
+	height: $height;
+	flex: 0 0 $width;
+	position: relative;
+	background-color: transparent;
+
+	&::after,
+	&::before {
+		content: "";
+		position: absolute;
+		background: #000;
+	}
+	&::after {
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+		width: 100%;
+		height: 2px;
+	}
+	&::before {
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 2px;
+		height: 100%;
+	}
+}
+
+@mixin toggle-item($padding) {
+	&:last-child {
+		border-bottom: 1px solid $borCol;
+	}
+}
+
+@mixin toggle-top($padding, $borCol) {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	padding-top: $padding;
+	padding-bottom: $padding;
+	border-top: 1px solid $borCol;
+}
+
+@mixin toggle-bot($padding) {
+	display: none;
+	padding-top: $padding;
+	padding-bottom: $padding;
+}
