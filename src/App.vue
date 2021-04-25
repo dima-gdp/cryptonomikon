@@ -3,6 +3,7 @@
     <div class="hero__container container">
       <h2 class="visually-hidden">Критповалюта</h2>
       <div class="add">
+        <p class="add__text">Лучше использовать BTC, ETH, DOGE, так как у них чаще обновляется цена</p>
         <label class="add__label">
           Тикер
           <input

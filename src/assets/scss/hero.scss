@@ -149,6 +149,14 @@
 .add {
 	margin-bottom: 60px;
 	min-height: 144px;
+	&__text {
+		margin-bottom: 25px;
+		color: #fff;
+		font-size: 16px;
+		@media (max-width: 576px) {
+			font-size: 14px;
+		}
+	}
 	// .add__label
 	&__label {
 		display: flex;
